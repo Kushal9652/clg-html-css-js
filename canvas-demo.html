@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Canvas Demo</title>
+</head>
+<body>
+    <h1 style="text-align:center; color:#34495e; font-family:'Segoe UI',Arial,sans-serif; margin-top:24px;">Beautiful Canvas Animation</h1>
+    <canvas id="myCanvas" width="600" height="350" style="display:block; margin:30px auto; border-radius:16px; box-shadow:0 4px 16px rgba(44,62,80,0.12);"></canvas>
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+        const W = canvas.width;
+        const H = canvas.height;
+
+        // Bubble objects
+        const bubbles = [];
+        const colors = ['#e1bee7', '#90caf9', '#ffccbc', '#a5d6a7', '#f48fb1', '#ffe082'];
+        for(let i=0; i<20; i++) {
+            bubbles.push({
+                x: Math.random()*W,
+                y: Math.random()*H,
+                r: 18+Math.random()*22,
+                dx: (Math.random()-0.5)*1.2,
+                dy: -0.5-Math.random(),
+                color: colors[Math.floor(Math.random()*colors.length)]
+            });
+        }
+
+        function drawGradient() {
+            const grad = ctx.createLinearGradient(0,0,W,H);
+            grad.addColorStop(0, '#e3e6f3');
+            grad.addColorStop(0.5, '#f8fafc');
+            grad.addColorStop(1, '#f48fb1');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0,0,W,H);
+        }
+
+        function drawBubbles() {
+            for(const b of bubbles) {
+                ctx.beginPath();
+                ctx.arc(b.x, b.y, b.r, 0, 2*Math.PI);
+                ctx.fillStyle = b.color;
+                ctx.globalAlpha = 0.7;
+                ctx.fill();
+                ctx.globalAlpha = 1;
+                ctx.strokeStyle = '#fff';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+        }
+
+        function animate() {
+            drawGradient();
+            drawBubbles();
+            for(const b of bubbles) {
+                b.x += b.dx;
+                b.y += b.dy;
+                if(b.x < -b.r) b.x = W+b.r;
+                if(b.x > W+b.r) b.x = -b.r;
+                if(b.y < -b.r) {
+                    b.y = H+b.r;
+                    b.x = Math.random()*W;
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
