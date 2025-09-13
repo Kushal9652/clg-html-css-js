@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Product Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 24px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #e3e6f3 0%, #f8fafc 100%);
+            color: #34495e;
+        }
+        .dashboard {
+            max-width: 1280px;
+            margin: auto;
+            background: #fff;
+            border-radius: 18px;
+            padding: 32px 28px;
+            box-shadow: 0 8px 32px rgba(44,62,80,0.12);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .action-btn {
+            background: linear-gradient(90deg, #42a5f5 60%, #90caf9 100%);
+            border: none;
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+        .action-btn:hover {
+            background: linear-gradient(90deg, #1e88e5 60%, #42a5f5 100%);
+            box-shadow: 0 4px 16px rgba(44,62,80,0.18);
+        }
+        .filter-panel {
+            background: #f7fbe7;
+            padding: 18px;
+            border-radius: 12px;
+            display: flex;
+            gap: 32px;
+            margin-bottom: 28px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+        }
+        .filter-panel label {
+            font-size: 16px;
+            color: #34495e;
+            display: flex;
+            flex-direction: column;
+            font-weight: 500;
+        }
+        .filter-panel select,
+        .filter-panel input {
+            margin-top: 8px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #e3e6f3;
+            background: #fff;
+            color: #34495e;
+            font-size: 15px;
+        }
+        .filter-panel input[type="range"] {
+            width: 120px;
+        }
+        .filter-panel input:focus,
+        .filter-panel select:focus {
+            outline: none;
+            box-shadow: 0 0 6px #42a5f5;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+        }
+        thead {
+            background: linear-gradient(90deg, #42a5f5 60%, #90caf9 100%);
+        }
+        thead th {
+            padding: 16px;
+            text-align: left;
+            position: relative;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        thead th .sort-icon {
+            font-size: 12px;
+            margin-left: 6px;
+            color: #f7fbe7;
+        }
+        tbody tr {
+            border-bottom: 1px solid #e3e6f3;
+            transition: background 0.2s;
+        }
+        tbody tr:hover {
+            background: #f7fbe7;
+        }
+        tbody td {
+            padding: 14px 16px;
+            font-size: 15px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: #34495e;
+        }
+        .address-info {
+            font-size: 13px;
+            color: #42a5f5;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: #fff;
+            min-width: 150px;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(44,62,80,0.12);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: #34495e;
+            padding: 12px 18px;
+            text-decoration: none;
+            display: block;
+            font-size: 15px;
+            border-bottom: 1px solid #e3e6f3;
+        }
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        .dropdown-content a:hover {
+            background: #f7fbe7;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard">
+        <div class="header">
+            <h2>Product Dashboard</h2>
+            <button class="action-btn">New Entry</button>
+        </div>
+
+        <div class="filter-panel">
+            <label>
+                Sort:
+                <select>
+                    <option>Ascending</option>
+                    <option>Descending</option>
+                </select>
+            </label>
+            <label>
+                Limit Range:
+                <input type="range" min="0" max="100" value="50" />
+            </label>
+            <label>
+                Filter By:
+                <select>
+                    <option>Company</option>
+                    <option>Contact</option>
+                    <option>Address</option>
+                    <option>Revenue</option>
+                </select>
+            </label>
+            <button class="action-btn">Apply</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Customer <span class="sort-icon">▲</span></th>
+                    <th>Company <span class="sort-icon">▲</span></th>
+                    <th>Contact <span class="sort-icon">▲</span></th>
+                    <th>Address</th>
+                    <th>Revenue <span class="sort-icon">▲</span></th>
+                    <th>V.A.T</th>
+                    <th>Total Price <span class="sort-icon">▲</span></th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>IBBP Apps</td>
+                    <td>H&R Real Estate</td>
+                    <td>Joshua O'Neil</td>
+                    <td>276 Tremont Street, Boston, MA <br><span class="address-info">View in Google Maps</span></td>
+                    <td>$420,930</td>
+                    <td>$12,834</td>
+                    <td>$433,764</td>
+                    <td>Finished</td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="action-btn">⋮</button>
+                            <div class="dropdown-content">
+                                <a href="#">Compare</a>
+                                <a href="#">Edit</a>
+                                <a href="#">View Revisions</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>SRA - General Contacts</td>
+                    <td>Great West</td>
+                    <td>Eli Ahmad</td>
+                    <td>1310 Mission Street, San Francisco, CA</td>
+                    <td>$312,840</td>
+                    <td>$8,210</td>
+                    <td>$321,050</td>
+                    <td>In Progress</td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="action-btn">⋮</button>
+                            <div class="dropdown-content">
+                                <a href="#">Compare</a>
+                                <a href="#">Edit</a>
+                                <a href="#">View Revisions</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>CCST</td>
+                    <td>Fording Financial</td>
+                    <td>Dennis Vill</td>
+                    <td>San Diego, CA 92138</td>
+                    <td>$112,483</td>
+                    <td>$3,400</td>
+                    <td>$115,883</td>
+                    <td>Finished</td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="action-btn">⋮</button>
+                            <div class="dropdown-content">
+                                <a href="#">Compare</a>
+                                <a href="#">Edit</a>
+                                <a href="#">View Revisions</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+               
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

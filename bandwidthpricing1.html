@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Pricing Table</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #e3e6f3 0%, #f8fafc 100%);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .pricing-table {
+            display: flex;
+            gap: 32px;
+            max-width: 1100px;
+            width: 100%;
+        }
+        .plan {
+            background: #fff;
+            border-radius: 18px;
+            overflow: hidden;
+            text-align: center;
+            flex: 1;
+            box-shadow: 0 8px 32px rgba(44,62,80,0.12);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s;
+        }
+        .plan.popular {
+            transform: scale(1.07);
+            z-index: 2;
+            box-shadow: 0 12px 40px rgba(44,62,80,0.18);
+        }
+        .plan .header {
+            padding: 28px 0 18px 0;
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .starter .header { background: linear-gradient(90deg, #5dade2 60%, #85c1e9 100%); }
+        .econo .header { background: linear-gradient(90deg, #3498db 60%, #5dade2 100%); }
+        .standard .header { background: linear-gradient(90deg, #2e86c1 60%, #5dade2 100%); }
+        .professional .header { background: linear-gradient(90deg, #1f618d 60%, #2e86c1 100%); }
+        .price {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 16px 0 0 0;
+            color: #34495e;
+        }
+        .per-month {
+            font-size: 16px;
+            color: #7f8c8d;
+            margin-bottom: 12px;
+        }
+        .features {
+            background: #f7fbe7;
+            text-align: left;
+            padding: 24px 28px;
+        }
+        .features div {
+            border-bottom: 1px solid #e3e6f3;
+            padding: 12px 0;
+            font-size: 17px;
+            color: #34495e;
+        }
+        .features div:last-child {
+            border-bottom: none;
+        }
+        .signup {
+            padding: 24px;
+        }
+        .signup button {
+            background: linear-gradient(90deg, #5dade2 60%, #85c1e9 100%);
+            color: #fff;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+        .signup button:hover {
+            background: linear-gradient(90deg, #3498db 60%, #5dade2 100%);
+            box-shadow: 0 4px 16px rgba(44,62,80,0.18);
+        }
+        .hot-tag {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: linear-gradient(90deg, #e74c3c 60%, #ff7675 100%);
+            color: #fff;
+            font-size: 12px;
+            padding: 7px 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(231,76,60,0.12);
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="pricing-table">
+
+        <div class="plan starter">
+            <div class="header">starter</div>
+            <div class="price">$10</div>
+            <div class="per-month">per month</div>
+            <div class="features">
+                <div>Amount of space: 10GB</div>
+                <div>Bandwidth per month: 100GB</div>
+                <div>No. of e-mail accounts: 1</div>
+                <div>No. of MySql databases: 1</div>
+                <div>24h support: Yes</div>
+                <div>Support tickets per mo.: 1</div>
+            </div>
+            <div class="signup">
+                <button>sign up!</button>
+            </div>
+        </div>
+
+        <div class="plan econo">
+            <div class="header">econo</div>
+            <div class="price">$30</div>
+            <div class="per-month">per month</div>
+            <div class="features">
+                <div>Amount of space: 30GB</div>
+                <div>Bandwidth per month: 200GB</div>
+                <div>No. of e-mail accounts: 10</div>
+                <div>No. of MySql databases: 10</div>
+                <div>24h support: Yes</div>
+                <div>Support tickets per mo.: 3</div>
+            </div>
+            <div class="signup">
+                <button>sign up!</button>
+            </div>
+        </div>
+
+        <div class="plan standard popular">
+            <div class="header">standard <span class="hot-tag">HOT</span></div>
+            <div class="price">$59</div>
+            <div class="per-month">per month</div>
+            <div class="features">
+                <div>Amount of space: 100GB</div>
+                <div>Bandwidth per month: 500GB</div>
+                <div>No. of e-mail accounts: 50</div>
+                <div>No. of MySql databases: 50</div>
+                <div>24h support: Yes</div>
+                <div>Support tickets per mo.: 5</div>
+            </div>
+            <div class="signup">
+                <button>sign up!</button>
+            </div>
+        </div>
+
+        <div class="plan professional">
+            <div class="header">professional <span class="hot-tag">HOT</span></div>
+            <div class="price">$99</div>
+            <div class="per-month">per month</div>
+            <div class="features">
+                <div>Amount of space: Unlimited</div>
+                <div>Bandwidth per month: 1000GB</div>
+                <div>No. of e-mail accounts: Unlimited</div>
+                <div>No. of MySql databases: Unlimited</div>
+                <div>24h support: Yes</div>
+                <div>Support tickets per mo.: 10</div>
+            </div>
+            <div class="signup">
+                <button>sign up!</button>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Invitation</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(120deg, #fceef6 0%, #e3e6f3 100%);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .invitation {
+      background: #fff;
+      width: 95%;
+      max-width: 540px;
+      padding: 48px 36px;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(44,62,80,0.12);
+      border: 2px solid #f48fb1;
+      position: relative;
+    }
+    .invitation::before {
+      content: '';
+      position: absolute;
+      top: -18px; left: -18px; right: -18px; bottom: -18px;
+      border-radius: 24px;
+      background: linear-gradient(120deg, #f48fb1 0%, #e3e6f3 100%);
+      opacity: 0.12;
+      z-index: 0;
+    }
+    .invitation h1 {
+      font-family: 'Georgia', serif;
+      font-size: 48px;
+      margin: 10px 0 0 0;
+      color: #f48fb1;
+      letter-spacing: 2px;
+      position: relative;
+      z-index: 1;
+    }
+    .subtitle {
+      font-size: 22px;
+      margin-bottom: 32px;
+      color: #34495e;
+      font-weight: 500;
+      position: relative;
+      z-index: 1;
+    }
+    .details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 36px;
+      font-size: 18px;
+      position: relative;
+      z-index: 1;
+    }
+    .details div {
+      width: 32%;
+      background: #f7fbe7;
+      border-radius: 10px;
+      padding: 16px 8px;
+      box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+      color: #34495e;
+    }
+    .details .time {
+      font-weight: bold;
+      font-size: 22px;
+      background: linear-gradient(90deg, #f48fb1 60%, #e3e6f3 100%);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(244,143,177,0.12);
+    }
+    .highlights {
+      text-align: left;
+      margin-top: 28px;
+      position: relative;
+      z-index: 1;
+    }
+    .highlights h3 {
+      text-transform: uppercase;
+      font-size: 18px;
+      margin-bottom: 12px;
+      color: #f48fb1;
+      letter-spacing: 1px;
+    }
+    .highlights ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .highlights ul li {
+      margin-bottom: 10px;
+      font-size: 16px;
+      padding-left: 18px;
+      position: relative;
+    }
+    .highlights ul li::before {
+      content: '★';
+      color: #f48fb1;
+      position: absolute;
+      left: 0;
+      font-size: 16px;
+    }
+    @media (max-width: 600px) {
+      .invitation {
+        padding: 24px 8px;
+      }
+      .details {
+        flex-direction: column;
+        gap: 18px;
+      }
+      .details div {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="invitation">
+    <p>We're pleased to invite you to the</p>
+    <h1>Annual</h1>
+    <div class="subtitle">Business Strategy Conference</div>
+
+    <div class="details">
+      <div>
+        <strong>Thursday,</strong><br>
+        September 19, 2096
+      </div>
+      <div class="time">
+        8:30 AM – 4:30 PM
+      </div>
+      <div>
+        Global Business Center <br>
+        123 Market Avenue <br>
+        New York, NY 10001
+      </div>
+    </div>
+
+    <div class="highlights">
+      <h3>Event Highlights:</h3>
+      <ul>
+        <li>Industry-Leading Speakers</li>
+        <li>Panel Discussions on Market Trends</li>
+        <li>Networking Opportunities</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
