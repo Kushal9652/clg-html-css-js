@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable</title>
+    <style>
+        h1 {
+            color: red;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin: 0;
+            text-align: center;
+        }
+        p {
+            margin: 2px ; 
+            font-size: 15px;
+        }
+        .center-text {
+            text-align: center;
+        }
+        #tab {
+            border: 2px solid black;
+            border-collapse: collapse;
+            width: 60%;
+            margin: auto;
+            text-align: center; 
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            vertical-align: middle; 
+        }
+       
+        .header-table {
+            border-collapse: collapse;
+            margin: auto;
+        }
+        .header-table td {
+            border: none;
+            text-align: center;
+           
+        }
+    </style>
+</head>
+<body>
+    
+    <table class="header-table">
+        <tr>
+            <td>
+                <img src="mbulogo.jpeg" alt="mbulogo" height="80" width="80">
+            </td>
+            <td>
+                <h1>MOHAN BABU UNIVERSITY</h1>
+            </td>
+        </tr>
+    </table>
+
+    <p class="center-text">Sree Sainath Nagar, A. Rangampet-517102</p>
+    <p class="center-text"><strong style="font-size: 20px;">SCHOOL OF COMPUTING</strong></p>
+    <p class="center-text"><strong style="font-size: 20px; text-decoration: underline;">DEPARTMENT OF DATA SCIENCE</strong></p>
+    <p class="center-text"><strong style="font-size: 20px; text-decoration: underline;">CLASS WORK TIME TABLE (2025-26)</strong></p>
+    <p class="center-text"><strong style="font-size: 20px;">V Semester (CS-2)</strong></p>
+    <br>
+
+   
+    <table id="tab">
+        <tr>
+            <th>Day/HR</th>
+            <th>11:10AM TO 12:05PM</th>
+            <th>12:05PM TO 01:00PM</th>
+            <th rowspan="6">LUNCH BREAK</th>
+            <th>02:15PM TO 3:10PM</th>
+            <th>03:10PM TO 04:05PM</th>
+            <th rowspan="6">BREAK</th>
+            <th>04:15PM TO 5:10PM</th>
+            <th>05:10PM TO 06:05PM</th>
+        </tr>
+        <tr>
+            <th>MON</th>
+            <td colspan="2">QAVA</td>
+            <td colspan="2">ML LAB</td>
+            <td>SSE </pre>
+            </td>
+            <td>LIB</td>
+        </tr>
+        <tr>
+            <th>TUE</th>
+            <td colspan="2">QAVA</td>
+            <td colspan="2">CP</td>
+            <td>WT</td>
+            <td>CAO</td>
+        </tr>
+        <tr>
+            <th>WED</th>
+            <td>CSE</td>
+            <td>WT</td>
+            <td colspan="2">WT LAB</td>
+            <td>SSE</td>
+            <td>CAO</td>
+        </tr>
+        <tr>
+            <th>THU</th>
+            <td colspan="2">CP</td>
+            <td>CSE</td>
+            <td>ML</td>
+            <td>CAO</td>
+            <td>LIB</td>
+        </tr>
+        <tr>
+            <th>FRI</th>
+            <td>WT</td>
+            <td>ML</td>
+            <td>CSE</td>
+            <td>ML</td>
+            <td colspan="2">CP</td>
+        </tr>
+    </table>
+</body>
+</html>
