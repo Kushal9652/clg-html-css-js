@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #e3e6f3 0%, #f8fafc 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(44,62,80,0.12);
+        }
+        h1 {
+            text-align: center;
+            color: #34495e;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        .question {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f7fbe7;
+            border-radius: 12px;
+            border-left: 4px solid #42a5f5;
+        }
+        .question h3 {
+            color: #34495e;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .options {
+            list-style: none;
+            padding: 0;
+        }
+        .options li {
+            margin: 10px 0;
+        }
+        .options input[type="radio"] {
+            margin-right: 10px;
+        }
+        .options label {
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        .options label:hover {
+            background: #e3e6f3;
+        }
+        .submit-btn {
+            background: linear-gradient(90deg, #42a5f5 60%, #90caf9 100%);
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+        .submit-btn:hover {
+            background: linear-gradient(90deg, #1e88e5 60%, #42a5f5 100%);
+            box-shadow: 0 4px 16px rgba(44,62,80,0.18);
+        }
+        .result {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: #f7fbe7;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        .score {
+            font-size: 24px;
+            font-weight: bold;
+            color: #42a5f5;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>General Knowledge Quiz</h1>
+        <form id="quizForm">
+            <div class="question">
+                <h3>1. What is the capital of France?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q1" value="london"> London</label></li>
+                    <li><label><input type="radio" name="q1" value="berlin"> Berlin</label></li>
+                    <li><label><input type="radio" name="q1" value="paris"> Paris</label></li>
+                    <li><label><input type="radio" name="q1" value="madrid"> Madrid</label></li>
+                </ul>
+            </div>
+
+            <div class="question">
+                <h3>2. Which planet is known as the Red Planet?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q2" value="venus"> Venus</label></li>
+                    <li><label><input type="radio" name="q2" value="mars"> Mars</label></li>
+                    <li><label><input type="radio" name="q2" value="jupiter"> Jupiter</label></li>
+                    <li><label><input type="radio" name="q2" value="saturn"> Saturn</label></li>
+                </ul>
+            </div>
+
+            <div class="question">
+                <h3>3. What is the largest ocean on Earth?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q3" value="atlantic"> Atlantic Ocean</label></li>
+                    <li><label><input type="radio" name="q3" value="indian"> Indian Ocean</label></li>
+                    <li><label><input type="radio" name="q3" value="pacific"> Pacific Ocean</label></li>
+                    <li><label><input type="radio" name="q3" value="arctic"> Arctic Ocean</label></li>
+                </ul>
+            </div>
+
+            <div class="question">
+                <h3>4. Who painted the Mona Lisa?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q4" value="picasso"> Pablo Picasso</label></li>
+                    <li><label><input type="radio" name="q4" value="davinci"> Leonardo da Vinci</label></li>
+                    <li><label><input type="radio" name="q4" value="vangogh"> Vincent van Gogh</label></li>
+                    <li><label><input type="radio" name="q4" value="monet"> Claude Monet</label></li>
+                </ul>
+            </div>
+
+            <div class="question">
+                <h3>5. What is the chemical symbol for gold?</h3>
+                <ul class="options">
+                    <li><label><input type="radio" name="q5" value="go"> Go</label></li>
+                    <li><label><input type="radio" name="q5" value="gd"> Gd</label></li>
+                    <li><label><input type="radio" name="q5" value="au"> Au</label></li>
+                    <li><label><input type="radio" name="q5" value="ag"> Ag</label></li>
+                </ul>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Quiz</button>
+        </form>
+
+        <div class="result" id="result">
+            <h2>Quiz Results</h2>
+            <div class="score" id="score"></div>
+            <p id="message"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('quizForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const answers = {
+                q1: 'paris',
+                q2: 'mars',
+                q3: 'pacific',
+                q4: 'davinci',
+                q5: 'au'
+            };
+            
+            let score = 0;
+            const formData = new FormData(this);
+            
+            for (let [question, correctAnswer] of Object.entries(answers)) {
+                if (formData.get(question) === correctAnswer) {
+                    score++;
+                }
+            }
+            
+            const percentage = (score / 5) * 100;
+            
+            document.getElementById('score').textContent = `${score}/5 (${percentage}%)`;
+            
+            let message = '';
+            if (percentage >= 80) {
+                message = 'Excellent! You did great!';
+            } else if (percentage >= 60) {
+                message = 'Good job! Keep learning!';
+            } else {
+                message = 'Keep studying and try again!';
+            }
+            
+            document.getElementById('message').textContent = message;
+            document.getElementById('result').style.display = 'block';
+            this.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

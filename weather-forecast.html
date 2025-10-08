@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #87ceeb 0%, #e0f6ff 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .weather-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(44,62,80,0.12);
+        }
+        h1 {
+            text-align: center;
+            color: #34495e;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+        .current-weather {
+            text-align: center;
+            background: linear-gradient(90deg, #42a5f5 60%, #90caf9 100%);
+            color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        .current-weather h2 {
+            margin: 0 0 10px 0;
+            font-size: 28px;
+        }
+        .temperature {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .weather-icon {
+            font-size: 64px;
+            margin: 15px 0;
+        }
+        .weather-details {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .detail-item {
+            text-align: center;
+        }
+        .detail-item h4 {
+            margin: 0 0 5px 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .detail-item span {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .forecast-section {
+            margin-top: 30px;
+        }
+        .forecast-section h3 {
+            color: #34495e;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .forecast-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        .forecast-card {
+            background: #f7fbe7;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #e3e6f3;
+            transition: transform 0.2s;
+        }
+        .forecast-card:hover {
+            transform: translateY(-5px);
+        }
+        .forecast-card h4 {
+            margin: 0 0 10px 0;
+            color: #34495e;
+            font-size: 16px;
+        }
+        .forecast-icon {
+            font-size: 36px;
+            margin: 10px 0;
+        }
+        .forecast-temps {
+            margin-top: 10px;
+        }
+        .high-temp {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .low-temp {
+            color: #3498db;
+            margin-left: 10px;
+        }
+        .search-section {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .search-input {
+            padding: 12px 20px;
+            border: 2px solid #e3e6f3;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-right: 10px;
+            width: 200px;
+        }
+        .search-btn {
+            background: linear-gradient(90deg, #42a5f5 60%, #90caf9 100%);
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.10);
+        }
+        .search-btn:hover {
+            background: linear-gradient(90deg, #1e88e5 60%, #42a5f5 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="weather-container">
+        <h1>Weather Forecast</h1>
+        
+        <div class="search-section">
+            <input type="text" class="search-input" placeholder="Enter city name..." value="New York">
+            <button class="search-btn" onclick="updateWeather()">Search</button>
+        </div>
+
+        <div class="current-weather">
+            <h2 id="currentCity">New York, NY</h2>
+            <div class="weather-icon" id="currentIcon">☀️</div>
+            <div class="temperature" id="currentTemp">22°C</div>
+            <p id="currentCondition">Sunny</p>
+            
+            <div class="weather-details">
+                <div class="detail-item">
+                    <h4>Humidity</h4>
+                    <span id="humidity">65%</span>
+                </div>
+                <div class="detail-item">
+                    <h4>Wind Speed</h4>
+                    <span id="windSpeed">12 km/h</span>
+                </div>
+                <div class="detail-item">
+                    <h4>Pressure</h4>
+                    <span id="pressure">1013 hPa</span>
+                </div>
+                <div class="detail-item">
+                    <h4>UV Index</h4>
+                    <span id="uvIndex">6</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="forecast-section">
+            <h3>7-Day Forecast</h3>
+            <div class="forecast-grid">
+                <div class="forecast-card">
+                    <h4>Monday</h4>
+                    <div class="forecast-icon">☀️</div>
+                    <p>Sunny</p>
+                    <div class="forecast-temps">
+                        <span class="high-temp">25°</span>
+                        <span class="low-temp">18°</span>
+                    </div>
+                </div>
+                <div class="forecast-card">
+                    <h4>Tuesday</h4>
+                    <div class="forecast-icon">⛅</div>
+                    <p>Partly Cloudy</p>
+                    <div class="forecast-temps">
+                        <span class="high-temp">23°</span>
+                        <span class="low-temp">16°</span>
+                    </div>
+                </div>
+                <div class="forecast-card">
+                    <h4>Wednesday</h4>
+                    <div class="forecast-icon">🌧️</div>
+                    <p>Rainy</p>
+                    <div class="forecast-temps">
+                        <span class="high-temp">19°</span>
+                        <span class="low-temp">14°</span>
+                    </div>
+                </div>
+                <div class="forecast-card">
+                    <h4>Thursday</h4>
+                    <div class="forecast-icon">⛈️</div>
+                    <p>Thunderstorm</p>
+                    <div class="forecast-temps">
+                        <span class="high-temp">21°</span>
+                        <span class="low-temp">15°</span>
+                    </div>
+                </div>
+                <div class="forecast-card">
+                    <h4>Friday</h4>
+                    <div class="forecast-icon">☁️</div>
+                    <p>Cloudy</p>
+                    <div class="forecast-temps">
+                        <span class="high-temp">20°</span>
+                        <span class="low-temp">13°</span>
+                    </div>
+                </div>
+                <div class="forecast-card">
+                    <h4>Saturday</h4>
+                    <div class="forecast-icon">🌤️</div>
+                    <p>Partly Sunny</p>
+                    <div class="forecast-temps">
+                        <span class="high-temp">24°</span>
+                        <span class="low-temp">17°</span>
+                    </div>
+                </div>
+                <div class="forecast-card">
+                    <h4>Sunday</h4>
+                    <div class="forecast-icon">☀️</div>
+                    <p>Sunny</p>
+                    <div class="forecast-temps">
+                        <span class="high-temp">26°</span>
+                        <span class="low-temp">19°</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const weatherData = {
+            'New York': {
+                city: 'New York, NY',
+                temp: '22°C',
+                condition: 'Sunny',
+                icon: '☀️',
+                humidity: '65%',
+                windSpeed: '12 km/h',
+                pressure: '1013 hPa',
+                uvIndex: '6'
+            },
+            'London': {
+                city: 'London, UK',
+                temp: '15°C',
+                condition: 'Cloudy',
+                icon: '☁️',
+                humidity: '78%',
+                windSpeed: '8 km/h',
+                pressure: '1020 hPa',
+                uvIndex: '3'
+            },
+            'Tokyo': {
+                city: 'Tokyo, Japan',
+                temp: '28°C',
+                condition: 'Partly Cloudy',
+                icon: '⛅',
+                humidity: '72%',
+                windSpeed: '15 km/h',
+                pressure: '1008 hPa',
+                uvIndex: '7'
+            },
+            'Sydney': {
+                city: 'Sydney, Australia',
+                temp: '24°C',
+                condition: 'Rainy',
+                icon: '🌧️',
+                humidity: '85%',
+                windSpeed: '18 km/h',
+                pressure: '1015 hPa',
+                uvIndex: '4'
+            }
+        };
+
+        function updateWeather() {
+            const cityInput = document.querySelector('.search-input').value.trim();
+            const cityKey = Object.keys(weatherData).find(key => 
+                key.toLowerCase().includes(cityInput.toLowerCase())
+            ) || 'New York';
+            
+            const data = weatherData[cityKey];
+            
+            document.getElementById('currentCity').textContent = data.city;
+            document.getElementById('currentTemp').textContent = data.temp;
+            document.getElementById('currentCondition').textContent = data.condition;
+            document.getElementById('currentIcon').textContent = data.icon;
+            document.getElementById('humidity').textContent = data.humidity;
+            document.getElementById('windSpeed').textContent = data.windSpeed;
+            document.getElementById('pressure').textContent = data.pressure;
+            document.getElementById('uvIndex').textContent = data.uvIndex;
+        }
+
+        // Initialize with default city
+        updateWeather();
+    </script>
+</body>
+</html>
